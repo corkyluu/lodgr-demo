@@ -4,6 +4,8 @@
 <title>Lodgr — Interactive Demo</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>">
 
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>/**
@@ -2046,7 +2048,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         <div onClick="{{ goTrips }}" style="cursor:pointer; color:{{ tabTripsColor }};">Trips</div>
         <div onClick="{{ goHosting }}" style="cursor:pointer; color:{{ tabHostingColor }};">Hosting</div>
         <div onClick="{{ goWallet }}" style="cursor:pointer; color:{{ tabWalletColor }};">Wallet</div>
-        <div onClick="{{ goInbox }}" style="cursor:pointer; color:{{ tabInboxColor }}; display:flex; align-items:center; gap:6px;">Inbox <span style="font-size:9px; font-weight:700; letter-spacing:0.5px; background:#EBE8E1; color:#8A867B; border-radius:3px; padding:2px 5px;">SOON</span></div>
+        <div onClick="{{ goInbox }}" style="cursor:pointer; color:{{ tabInboxColor }}; display:flex; align-items:center; gap:6px;">Inbox <span style="min-width:16px; height:16px; box-sizing:border-box; font-size:10px; font-weight:700; background:#1E7A5A; color:#FFFFFF; border-radius:999px; padding:1px 5px; line-height:14px; text-align:center;">2</span></div>
       </div>
       <div onClick="{{ goWallet }}" style="background:#26251F; color:#FFFFFF; border-radius:5px; padding:9px 14px; font-size:13px; font-weight:700; cursor:pointer;">{{ chipBalance }}</div>
     </div>
@@ -2128,8 +2130,103 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:16px 18px; text-align:left; max-width:380px; margin:0 auto; box-sizing:border-box;">
           <div style="font-size:13.5px; color:#5C594F; line-height:1.55;">Didn't get it? Check spam, or <a href="#" onClick="{{ goLoginResend }}">send it again</a>. Wrong address? <a href="#" onClick="{{ goLoginBack }}">Use a different email</a>.</div>
         </div>
-        <div onClick="{{ goFork }}" style="margin-top:34px; display:inline-block; font-size:13px; color:#A19C91; border:1px dashed #DDD9D0; border-radius:5px; padding:9px 16px; cursor:pointer;">Demo: open the link →</div>
+        <div onClick="{{ goIdvIntro }}" style="margin-top:34px; display:inline-block; font-size:13px; color:#A19C91; border:1px dashed #DDD9D0; border-radius:5px; padding:9px 16px; cursor:pointer;">Demo: open the link →</div>
       </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ A1 IDV INTRO ============ -->
+  <sc-if value="{{ s_idv_intro }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Verify identity" style="animation:lodgrFadeUp .35s ease; padding:0 22px 120px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0;">
+        <div onClick="{{ goLoginSent }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="font-size:13px; color:#A19C91; font-weight:600;">One step before you're in</div>
+      </div>
+      <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:30px; letter-spacing:-0.8px; line-height:1.1; margin:0 0 10px;">Every member is verified</h1>
+      <p style="font-size:15px; color:#5C594F; line-height:1.6; margin:0 0 22px; text-wrap:pretty;">Lodgr members sleep in each other's homes. That works because everyone here has shown a real ID — the people booking your place, and the hosts whose door codes you'll get.</p>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:12px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#1E7A5A; margin-bottom:12px;">What it takes — about 2 minutes</div>
+        <div style="display:grid; gap:10px; font-size:14px; color:#3F3D35;">
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">✓</span><span>A government ID — driver's license, passport, or state ID</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">✓</span><span>A quick selfie to match the photo</span></div>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:26px;">
+        <div style="font-size:13.5px; color:#5C594F; line-height:1.6;">Your documents go to our identity partner, never to other members. We keep one word from the whole process: <strong style="color:#26251F;">verified</strong>.</div>
+      </div>
+      <div onClick="{{ goIdvCapture }}" style="background:#1E7A5A; color:#FFFFFF; font-weight:700; font-size:16px; text-align:center; padding:16px 0; border-radius:5px; cursor:pointer;">Verify my identity</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ A1 IDV CAPTURE ============ -->
+  <sc-if value="{{ s_idv_capture }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="ID and selfie" style="animation:lodgrFadeUp .35s ease; padding:0 22px 120px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0;">
+        <div onClick="{{ goIdvIntro }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="font-size:13px; color:#A19C91; font-weight:600;">Verification · 2 of 2</div>
+      </div>
+      <div style="height:4px; background:#EBE8E1; border-radius:99px; margin-bottom:26px;"><div style="width:75%; height:100%; background:#1E7A5A; border-radius:99px;"></div></div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:16px 18px; margin-bottom:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-weight:700; font-size:15px;">Government ID <span style="color:#1E7A5A;">✓</span></div>
+            <div style="font-size:13px; color:#8A867B; margin-top:2px;">Driver's license · California · captured</div>
+          </div>
+          <div onClick="{{ noopDiv }}" style="font-size:13px; font-weight:600; color:#5C594F; cursor:pointer;">Retake</div>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:22px;">
+        <div style="font-weight:700; font-size:15px; margin-bottom:4px;">Now a quick selfie</div>
+        <div style="font-size:13.5px; color:#5C594F; line-height:1.55; margin-bottom:14px;">Face the camera in good light. No hats or sunglasses — it just needs to match your ID photo.</div>
+        <div style="aspect-ratio:4/5; max-width:250px; margin:0 auto 14px; border-radius:8px; border:2px dashed #C9C4B9; background:repeating-linear-gradient(135deg,#F5F3EE,#F5F3EE 8px,#FAF9F6 8px,#FAF9F6 16px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
+          <div style="width:88px; height:88px; border-radius:999px; border:2px solid #B0ACA2;"></div>
+          <div style="font-family:ui-monospace, monospace; font-size:11px; color:#8A867B;">camera preview</div>
+        </div>
+        <div onClick="{{ goIdvPending }}" style="background:#26251F; color:#FFFFFF; font-weight:700; font-size:15px; text-align:center; padding:14px 0; border-radius:5px; cursor:pointer;">Take selfie</div>
+      </div>
+      <div style="font-size:12.5px; color:#A19C91; text-align:center; line-height:1.5;">Checked automatically by our identity partner. Nothing is stored on your device.</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ A1 IDV PENDING ============ -->
+  <sc-if value="{{ s_idv_pending }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Verifying" style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 32px; box-sizing:border-box; text-align:center;">
+      <div style="width:44px; height:44px; border:3px solid #EBE8E1; border-top-color:#1E7A5A; border-radius:999px; animation:lodgrSpin 0.9s linear infinite; margin-bottom:26px;"></div>
+      <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:26px; letter-spacing:-0.7px; margin:0 0 10px;">Checking your ID…</h1>
+      <p style="font-size:14.5px; color:#5C594F; line-height:1.6; margin:0; max-width:320px;">Usually under a minute. If it takes longer, we'll email you the result — you don't have to wait here.</p>
+      <div onClick="{{ goIdvFailedLink }}" style="margin-top:40px; font-size:12px; color:#B0ACA2; border:1px dashed #DDD9D0; border-radius:5px; padding:8px 14px; cursor:pointer;">Demo: see the failed state →</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ A1 IDV VERIFIED ============ -->
+  <sc-if value="{{ s_idv_verified }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Verified" style="animation:lodgrFadeUp .35s ease; padding:0 22px 100px; max-width:560px; margin:0 auto; box-sizing:border-box; text-align:center;">
+      <div style="padding-top:96px;">
+        <div style="width:64px; height:64px; border-radius:999px; background:#1E7A5A; color:#FFFFFF; font-size:28px; display:flex; align-items:center; justify-content:center; margin:0 auto 22px;">✓</div>
+        <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:30px; letter-spacing:-0.8px; margin:0 0 10px;">You're verified</h1>
+        <p style="font-size:15px; color:#5C594F; line-height:1.6; margin:0 auto 26px; max-width:360px;">Welcome to the network, Maren. Hosts see a verified badge next to your name — and every guest who books your place has passed the same check.</p>
+        <div onClick="{{ goFork }}" style="display:inline-block; background:#1E7A5A; color:#FFFFFF; font-weight:700; font-size:16px; padding:16px 44px; border-radius:5px; cursor:pointer;">Set up your home</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ A1 IDV FAILED ============ -->
+  <sc-if value="{{ s_idv_failed }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Verification failed" style="animation:lodgrFadeUp .35s ease; padding:0 22px 100px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="padding-top:76px; text-align:center;">
+        <div style="width:64px; height:64px; border-radius:999px; background:#FBF4E6; color:#8B6E2E; font-size:26px; display:flex; align-items:center; justify-content:center; margin:0 auto 22px;">!</div>
+        <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.8px; margin:0 0 10px;">We couldn't match that</h1>
+        <p style="font-size:15px; color:#5C594F; line-height:1.6; margin:0 auto 24px; max-width:360px;">Nothing's wrong with your account — the photos just didn't read clearly. This fixes it nine times out of ten:</p>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:22px;">
+        <div style="display:grid; gap:10px; font-size:14px; color:#3F3D35;">
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">1.</span><span>Retake the ID on a dark, matte surface — glare is the usual culprit</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">2.</span><span>Face a window for the selfie, not away from one</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">3.</span><span>Check the ID isn't expired — expired documents can't verify</span></div>
+        </div>
+      </div>
+      <div onClick="{{ goIdvCapture }}" style="background:#1E7A5A; color:#FFFFFF; font-weight:700; font-size:16px; text-align:center; padding:16px 0; border-radius:5px; cursor:pointer; margin-bottom:12px;">Try again</div>
+      <div style="text-align:center; font-size:13.5px; color:#8A867B;">Still stuck after two tries? <a href="#" onClick="{{ noop }}">A person will review it</a> — usually same day.</div>
     </div>
   </sc-if>
 
@@ -2926,6 +3023,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           <div onClick="{{ goUnlockDetail }}" style="flex:1; text-align:center; border:1px solid #DDD9D0; border-radius:5px; padding:9px 0; font-size:13px; font-weight:600; cursor:pointer;">Unlock schedule</div>
           <div onClick="{{ goActivity }}" style="flex:1; text-align:center; border:1px solid #DDD9D0; border-radius:5px; padding:9px 0; font-size:13px; font-weight:600; cursor:pointer;">All activity</div>
         </div>
+        <div onClick="{{ goHcxReason }}" style="font-size:12.5px; color:#A19C91; margin-top:12px; cursor:pointer;">Need to cancel this stay? <span style="text-decoration:underline;">See what it costs first</span></div>
       </div>
       </div>
       <div style="grid-column:1 / -1; font-size:11px; color:#B9B4AC; margin-top:14px;">Unlock thresholds shown (100% refund &gt;14d · 50% at 7–14d · 0% &lt;7d) are placeholder values pending final policy.</div>
@@ -3097,7 +3195,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           <div onClick="{{ goVrbo }}" style="font-size:13px; color:#1E7A5A; font-weight:700; cursor:pointer; flex:0 0 auto;">Reconnect</div>
         </div>
       </div>
-      <div style="font-size:12.5px; color:#A19C91; line-height:1.55; margin-top:14px;">We emailed you when this happened and will nudge once more in 48 hours. Nothing is lost — reconnecting picks up right where sync left off.</div>
+      <div style="font-size:12.5px; color:#A19C91; line-height:1.55; margin-top:14px;">We emailed you when this happened and will nudge once more in 48 hours. Nothing is lost — reconnecting picks up right where sync left off. If a disconnect ever overlaps a confirmed stay, it escalates — <a href="#" onClick="{{ goSyncIncidentLink }}">see that state</a>.</div>
     </div>
   </sc-if>
 
@@ -3123,6 +3221,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             <div style="font-size:12px; color:#A19C91; flex:0 0 auto;">Today</div>
           </div>
           <div style="font-size:13px; color:#5C594F; margin-top:3px; line-height:1.5;">A cash guest took a night you'd released. It left the exchange automatically — nothing to do.</div>
+        </div>
+        <div style="padding:14px 16px; border-bottom:1px solid #EBE8E1;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:10px;">
+            <div style="font-weight:700; font-size:14.5px;">Sam W. checked out · Feb 27 – Mar 1</div>
+            <div style="font-size:12px; color:#A19C91; flex:0 0 auto;">Mon</div>
+          </div>
+          <div style="font-size:13px; color:#5C594F; margin-top:3px; line-height:1.5;">450 pts unlocked at his check-in. Anything broken? <span onClick="{{ goDmgReport }}" style="color:#1E7A5A; font-weight:600; cursor:pointer;">Report damage</span> — the window closes Mar 3, 6 PM. Or <span onClick="{{ goThreadHost }}" style="color:#1E7A5A; font-weight:600; cursor:pointer;">message him</span>.</div>
         </div>
         <div style="padding:14px 16px; border-bottom:1px solid #EBE8E1;">
           <div style="display:flex; justify-content:space-between; align-items:baseline; gap:10px;">
@@ -3213,6 +3318,77 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       </div>
       <div style="background:#F1EFE9; border-radius:5px; padding:14px 18px; font-size:13.5px; color:#3F3D35; line-height:1.55; margin-bottom:18px;">The nights are back on your channels for cash and back in the exchange for points — whichever books first wins, same as always.</div>
       <div onClick="{{ goHosting }}" style="background:#26251F; color:#FFFFFF; font-weight:700; font-size:15px; text-align:center; padding:15px 0; border-radius:5px; cursor:pointer;">View calendar</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ D4b HCX REASON ============ -->
+  <sc-if value="{{ s_hcx_reason }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Cancel a stay (host)" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0;">
+        <div onClick="{{ goHosting }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:22px; letter-spacing:-0.5px;">Cancel Daniel's stay</div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:16px 18px; margin-bottom:20px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <div style="font-weight:700; font-size:15px;">Daniel R. · Mar 8–9</div>
+          <div style="font-weight:700; font-size:15px; color:#8B6E2E;">225 pts in escrow</div>
+        </div>
+        <div style="font-size:13px; color:#8A867B; margin-top:3px;">Confirmed Feb 18 · checks in in 26 days</div>
+      </div>
+      <p style="font-size:14.5px; color:#5C594F; line-height:1.6; margin:0 0 16px; text-wrap:pretty;">Daniel booked this instantly and it's confirmed — cancelling on him is the one thing the exchange treats as serious. Tell us why:</p>
+      <div style="display:grid; gap:10px; margin-bottom:22px;">
+        <sc-for list="{{ hcxReasons }}" as="r" hint-placeholder-count="4">
+          <div onClick="{{ r.tap }}" style="display:flex; align-items:center; gap:12px; background:{{ r.bg }}; border:1px solid {{ r.bd }}; border-radius:8px; padding:15px 16px; cursor:pointer;">
+            <span style="width:18px; height:18px; border-radius:999px; border:2px solid {{ r.dotBd }}; background:{{ r.dotBg }}; box-sizing:border-box; flex:0 0 auto;"></span>
+            <span style="font-size:14.5px; font-weight:600;">{{ r.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div onClick="{{ hcxContinue }}" style="background:{{ hcxCtaBg }}; color:#FFFFFF; font-weight:700; font-size:16px; text-align:center; padding:16px 0; border-radius:5px; cursor:pointer; margin-bottom:12px;">See what cancelling costs</div>
+      <div onClick="{{ goHosting }}" style="text-align:center; font-size:14px; font-weight:600; color:#5C594F; padding:10px 0; cursor:pointer;">Keep the booking</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ D4b HCX PREVIEW ============ -->
+  <sc-if value="{{ s_hcx_preview }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Host cancel consequences" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0;">
+        <div onClick="{{ goHcxReason }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:22px; letter-spacing:-0.5px;">Here's exactly what happens</div>
+      </div>
+      <p style="font-size:14px; color:#8A867B; margin:0 0 16px;">Reason on file: {{ hcxReasonLabel }}</p>
+      <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:#8A867B; margin:0 0 10px;">Daniel is made whole — and then some</div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:16px 18px; margin-bottom:18px; display:grid; gap:9px; font-size:14px;">
+        <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#5C594F;">His 225 pts</span><strong style="color:#1E7A5A;">Returned in full</strong></div>
+        <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#5C594F;">Apology credit (20%)</span><strong style="color:#1E7A5A;">+45 pts, on us</strong></div>
+        <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#5C594F;">$85 cleaning fee</span><strong style="color:#1E7A5A;">Refunded to his card</strong></div>
+      </div>
+      <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:#8A867B; margin:0 0 10px;">Your side</div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:16px 18px; margin-bottom:12px; display:grid; gap:9px; font-size:14px;">
+        <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#5C594F;">Your 225 pts in escrow</span><strong style="color:#A0402A;">Clawed back</strong></div>
+        <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#5C594F;">Mar 8–9</span><strong>Back on your calendar, not re-released</strong></div>
+      </div>
+      <div style="background:#FBF4E6; border:1px solid #EAD9AE; border-radius:8px; padding:14px 16px; font-size:13.5px; color:#8B6E2E; line-height:1.6; margin-bottom:22px;"><strong>Your home takes a standing hit.</strong> This cancellation stays on the Fernwood A-Frame's record for 12 months and can lower where it appears in Explore. Repeat cancellations put the listing under review.</div>
+      <div onClick="{{ goHcxDone }}" style="background:#A0402A; color:#FFFFFF; font-weight:700; font-size:16px; text-align:center; padding:16px 0; border-radius:5px; cursor:pointer; margin-bottom:12px;">Cancel Daniel's stay</div>
+      <div onClick="{{ goHosting }}" style="text-align:center; font-size:14px; font-weight:600; color:#5C594F; padding:10px 0; cursor:pointer;">Keep the booking</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ D4b HCX DONE ============ -->
+  <sc-if value="{{ s_hcx_done }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Stay cancelled (host)" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box; text-align:center;">
+      <div style="padding-top:80px;">
+        <div style="width:64px; height:64px; border-radius:999px; background:#F1EFE9; color:#8A867B; font-size:26px; display:flex; align-items:center; justify-content:center; margin:0 auto 22px;">–</div>
+        <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.8px; margin:0 0 10px;">Daniel's stay is cancelled</h1>
+        <p style="font-size:15px; color:#5C594F; line-height:1.6; margin:0 auto 24px; max-width:380px;">He's been notified with his full refund, the 45-pt credit, and his cleaning fee back. Your 225 escrow points reversed and Mar 8–9 are back on your calendar.</p>
+        <div style="background:#FBF4E6; border:1px solid #EAD9AE; border-radius:8px; padding:13px 18px; display:inline-block; margin-bottom:28px; max-width:380px;">
+          <div style="font-size:13.5px; color:#8B6E2E; line-height:1.55; text-align:left;">Standing note recorded — 1 host cancellation in the last 12 months. It ages off Mar 2028.</div>
+        </div>
+        <div style="display:flex; gap:10px; justify-content:center;">
+          <div onClick="{{ goHosting }}" style="background:#26251F; color:#FFFFFF; font-weight:700; font-size:15px; padding:14px 26px; border-radius:5px; cursor:pointer;">Back to Hosting</div>
+          <div onClick="{{ goActivity }}" style="border:1px solid #DDD9D0; color:#26251F; font-weight:700; font-size:15px; padding:14px 26px; border-radius:5px; cursor:pointer;">View activity</div>
+        </div>
+      </div>
     </div>
   </sc-if>
 
@@ -3452,7 +3628,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 
       <div onClick="{{ goConfirming }}" style="margin-top:20px; background:#1E7A5A; color:#FFFFFF; font-weight:700; font-size:16px; text-align:center; padding:17px 0; border-radius:5px; cursor:pointer;">Confirm stay</div>
       <div style="text-align:center; font-size:12px; color:#A19C91; margin-top:12px;">Instant book — no host approval needed.</div>
-      <div style="text-align:center; font-size:12px; color:#B0ACA2; margin-top:8px;">Demo: <a href="#" onClick="{{ goConfirmingFailLink }}" style="color:#A19C91;">see the failure branch</a></div>
+      <div style="text-align:center; font-size:12px; color:#B0ACA2; margin-top:8px;">Demo: <a href="#" onClick="{{ goConfirmingFailLink }}" style="color:#A19C91;">see the failure branch</a> · <a href="#" onClick="{{ goHoldExpiredLink }}" style="color:#A19C91;">hold expiry</a> · <a href="#" onClick="{{ goDegradedLink }}" style="color:#A19C91;">degraded mode</a></div>
     </div>
   </sc-if>
 
@@ -3677,7 +3853,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       </div>
 
       <div style="display:flex; gap:10px; margin-bottom:14px;">
-        <div style="flex:1; text-align:center; border:1px solid #DDD9D0; border-radius:5px; padding:12px 0; font-size:13.5px; font-weight:600;">Message host</div>
+        <div onClick="{{ goThreadGuest }}" style="flex:1; text-align:center; border:1px solid #DDD9D0; border-radius:5px; padding:12px 0; font-size:13.5px; font-weight:600; cursor:pointer;" style-hover="border-color:#1E7A5A;">Message Maren</div>
         <div style="flex:1; text-align:center; border:1px solid #DDD9D0; border-radius:5px; padding:12px 0; font-size:13.5px; font-weight:600;">Get help</div>
       </div>
       <div onClick="{{ goCancelPreview }}" style="text-align:center; font-size:14px; font-weight:600; color:#A0402A; padding:12px 0; cursor:pointer;">Cancel this stay</div>
@@ -3892,7 +4068,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             <div style="font-weight:600; font-size:14.5px;"><span style="color:#1E7A5A; font-weight:700; font-size:11px; border:1px solid #9CC7AF; border-radius:3px; padding:2px 6px; margin-right:8px;">REFUND</span>Guest cancelled early · booking #0975</div>
             <strong style="color:#1E7A5A; font-size:14.5px;">reversed</strong>
           </div>
-          <div style="font-size:12.5px; color:#8A867B; margin-top:4px;">Jan 3 · 290 pts escrow reversed · nights re-released</div>
+          <div style="font-size:12.5px; color:#8A867B; margin-top:4px;">Jan 3 · 290 pts escrow reversed · nights re-released · <span onClick="{{ goWalletFrozen }}" style="color:#1E7A5A; font-weight:600; cursor:pointer;">what if a clawback goes negative? →</span></div>
         </div>
         <div style="padding:14px 16px;">
           <div style="display:flex; justify-content:space-between; align-items:baseline;">
@@ -3958,21 +4134,377 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     </div>
   </sc-if>
 
-  <!-- ============ F2 INBOX SOON ============ -->
-  <sc-if value="{{ s_inbox_soon }}" hint-placeholder-val="{{ false }}">
-    <div data-screen-label="Inbox coming soon" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box; text-align:center;">
-      <div style="padding-top:96px;">
-        <div style="width:64px; height:64px; border-radius:999px; background:#F1EFE9; color:#8A867B; font-size:24px; display:flex; align-items:center; justify-content:center; margin:0 auto 22px;">✉</div>
-        <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.8px; margin:0 0 10px;">Messaging is coming</h1>
-        <p style="font-size:15px; color:#5C594F; line-height:1.6; margin:0 auto 26px; max-width:360px;">Guest–host chat lands later this year. Until then, everything you'd message about already reaches you:</p>
-        <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; text-align:left; max-width:400px; margin:0 auto 26px; box-sizing:border-box;">
-          <div style="display:grid; gap:10px; font-size:14px; color:#26251F;">
-            <div style="display:flex; gap:10px;"><span style="color:#1E7A5A;">✓</span><span>Check-in details arrive by email and on your stay page, 48h out</span></div>
-            <div style="display:flex; gap:10px;"><span style="color:#1E7A5A;">✓</span><span>Booking changes and cancellations notify both sides instantly</span></div>
-            <div style="display:flex; gap:10px;"><span style="color:#1E7A5A;">✓</span><span>Anything urgent — our support team relays it, fast</span></div>
+  <!-- ============ F2 INBOX LIST ============ -->
+  <sc-if value="{{ s_inbox }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Inbox" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:640px; margin:0 auto; box-sizing:border-box;">
+      <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.7px; padding-top:20px; margin:0 0 6px;">Inbox</h1>
+      <p style="font-size:13.5px; color:#8A867B; margin:0 0 18px;">One thread per stay, opened the moment it books. No cold messages, ever.</p>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; overflow:hidden;">
+        <div onClick="{{ goThreadGuest }}" style="display:flex; gap:14px; align-items:flex-start; padding:15px 16px; border-bottom:1px solid #EBE8E1; cursor:pointer;" style-hover="background:#FDFCFA;">
+          <div style="width:42px; height:42px; border-radius:999px; background:#E7F3EC; color:#1E7A5A; font-family:'Schibsted Grotesk'; font-weight:800; font-size:16px; display:flex; align-items:center; justify-content:center; flex:0 0 auto;">M</div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; gap:10px;">
+              <div style="font-weight:700; font-size:14.5px;">Maren K. · Fernwood A-Frame</div>
+              <div style="font-size:12px; color:#1E7A5A; font-weight:700; flex:0 0 auto;">2h</div>
+            </div>
+            <div style="font-size:12.5px; color:#8A867B; margin-top:1px;">Your stay · Mar 12–15</div>
+            <div style="font-size:13.5px; color:#26251F; font-weight:600; margin-top:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Yes — pull past the gate, there's room for two cars.</div>
+          </div>
+          <div style="width:8px; height:8px; border-radius:999px; background:#1E7A5A; flex:0 0 auto; margin-top:6px;"></div>
+        </div>
+        <div onClick="{{ goThreadHost }}" style="display:flex; gap:14px; align-items:flex-start; padding:15px 16px; border-bottom:1px solid #EBE8E1; cursor:pointer;" style-hover="background:#FDFCFA;">
+          <div style="width:42px; height:42px; border-radius:999px; background:#F1EFE9; color:#5C594F; font-family:'Schibsted Grotesk'; font-weight:800; font-size:16px; display:flex; align-items:center; justify-content:center; flex:0 0 auto;">D</div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; gap:10px;">
+              <div style="font-weight:700; font-size:14.5px;">Daniel R. · your guest</div>
+              <div style="font-size:12px; color:#1E7A5A; font-weight:700; flex:0 0 auto;">5h</div>
+            </div>
+            <div style="font-size:12.5px; color:#8A867B; margin-top:1px;">Hosting · Mar 8–9</div>
+            <div style="font-size:13.5px; color:#26251F; font-weight:600; margin-top:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Is there room to park a small trailer?</div>
+          </div>
+          <div style="width:8px; height:8px; border-radius:999px; background:#1E7A5A; flex:0 0 auto; margin-top:6px;"></div>
+        </div>
+        <div onClick="{{ goThreadArchived }}" style="display:flex; gap:14px; align-items:flex-start; padding:15px 16px; cursor:pointer;" style-hover="background:#FDFCFA;">
+          <div style="width:42px; height:42px; border-radius:999px; background:#F1EFE9; color:#B0ACA2; font-family:'Schibsted Grotesk'; font-weight:800; font-size:16px; display:flex; align-items:center; justify-content:center; flex:0 0 auto;">C</div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; gap:10px;">
+              <div style="font-weight:600; font-size:14.5px; color:#5C594F;">Cypress Shores · Ana T. <span style="font-size:10px; font-weight:700; color:#8A867B; background:#EBE8E1; border-radius:3px; padding:2px 6px; margin-left:4px;">ARCHIVED</span></div>
+              <div style="font-size:12px; color:#B0ACA2; flex:0 0 auto;">Jan 25</div>
+            </div>
+            <div style="font-size:12.5px; color:#A19C91; margin-top:1px;">Past stay · Jan 9–11</div>
+            <div style="font-size:13.5px; color:#8A867B; margin-top:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Thanks again — hope to be back next winter!</div>
           </div>
         </div>
-        <div style="display:inline-block; border:1px solid #DDD9D0; color:#26251F; font-weight:600; font-size:14px; padding:12px 24px; border-radius:5px; cursor:pointer;">Contact support</div>
+      </div>
+      <div style="font-size:12.5px; color:#A19C91; line-height:1.55; margin-top:12px;">Threads go read-only 14 days after checkout. Photos are the only attachment type.</div>
+      <div onClick="{{ goInboxEmpty }}" style="margin-top:20px; display:inline-block; font-size:12px; color:#B0ACA2; border:1px dashed #DDD9D0; border-radius:5px; padding:8px 14px; cursor:pointer;">Demo: empty state →</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ F2 INBOX EMPTY ============ -->
+  <sc-if value="{{ s_inbox_empty }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Inbox empty" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box; text-align:center;">
+      <div style="padding-top:96px;">
+        <div style="width:64px; height:64px; border-radius:999px; background:#F1EFE9; color:#8A867B; font-size:24px; display:flex; align-items:center; justify-content:center; margin:0 auto 22px;">✉</div>
+        <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.8px; margin:0 0 10px;">No conversations yet</h1>
+        <p style="font-size:15px; color:#5C594F; line-height:1.6; margin:0 auto 26px; max-width:360px;">A thread opens automatically the moment a stay books — you and the other member, one place per booking. Conversations here always start with a reservation.</p>
+        <div onClick="{{ goExplore }}" style="display:inline-block; background:#1E7A5A; color:#FFFFFF; font-weight:700; font-size:15px; padding:14px 30px; border-radius:5px; cursor:pointer;">Find a stay</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ F2 THREAD — GUEST VIEW ============ -->
+  <sc-if value="{{ s_thread_guest }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Thread guest view" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0 12px;">
+        <div onClick="{{ goInbox }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="flex:1;">
+          <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:18px; letter-spacing:-0.4px;">Maren K. · Fernwood A-Frame</div>
+          <div style="font-size:12.5px; color:#8A867B;">Your stay Mar 12–15 · booking #1067</div>
+        </div>
+        <div onClick="{{ goTripDetail }}" style="font-size:12.5px; font-weight:600; color:#1E7A5A; cursor:pointer; flex:0 0 auto;">View stay</div>
+      </div>
+      <div style="display:grid; gap:12px; padding:8px 0 18px;">
+        <div style="text-align:center;"><span style="font-size:11.5px; font-weight:700; color:#1E7A5A; background:#E7F3EC; border-radius:4px; padding:4px 10px;">Booking confirmed · Feb 24</span></div>
+        <div style="max-width:80%; justify-self:start;">
+          <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px 8px 8px 3px; padding:11px 14px; font-size:14px; line-height:1.5;">Hi! So glad you're coming down. The marine layer usually burns off by ten — mornings on the deck are the whole point of this place.</div>
+          <div style="font-size:11px; color:#B0ACA2; margin-top:3px;">Maren · Feb 24, 6:12 PM</div>
+        </div>
+        <div style="max-width:80%; justify-self:end; text-align:right;">
+          <div style="background:#1E7A5A; color:#FFFFFF; border-radius:8px 8px 3px 8px; padding:11px 14px; font-size:14px; line-height:1.5; text-align:left;">Can't wait. We'll arrive around 4 — is there space for two cars?</div>
+          <div style="font-size:11px; color:#B0ACA2; margin-top:3px;">You · Feb 24, 7:48 PM</div>
+        </div>
+        <div style="max-width:80%; justify-self:start;">
+          <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px 8px 8px 3px; padding:11px 14px; font-size:14px; line-height:1.5;">Yes — pull past the gate, there's room for two cars. I'll flag the turn in the check-in notes.</div>
+          <div style="font-size:11px; color:#B0ACA2; margin-top:3px;">Maren · today, 9:02 AM</div>
+        </div>
+        <div style="text-align:center;"><span style="font-size:11.5px; font-weight:700; color:#8B6E2E; background:#FBF4E6; border-radius:4px; padding:4px 10px;">Check-in info unlocks here Mar 10</span></div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center; background:#FFFFFF; border:1px solid #DDD9D0; border-radius:8px; padding:8px;">
+        <div onClick="{{ noopDiv }}" style="width:38px; height:38px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:#8A867B; flex:0 0 auto;" title="Attach a photo">▣</div>
+        <input placeholder="Message Maren…" style="flex:1; border:none; outline:none; font-size:14px; font-family:inherit; background:transparent; color:#26251F; min-width:0;">
+        <div style="background:#1E7A5A; color:#FFFFFF; font-size:13.5px; font-weight:700; border-radius:5px; padding:10px 18px; cursor:pointer; flex:0 0 auto;">Send</div>
+      </div>
+      <div style="font-size:11.5px; color:#B9B4AC; margin-top:8px; text-align:center;">Photos only — files and links are stripped. Never pay anyone outside Lodgr.</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ F2 THREAD — HOST VIEW ============ -->
+  <sc-if value="{{ s_thread_host }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Thread host view" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0 12px;">
+        <div onClick="{{ goInbox }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="flex:1;">
+          <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:18px; letter-spacing:-0.4px;">Daniel R. · your guest</div>
+          <div style="font-size:12.5px; color:#8A867B;">Mar 8–9 · 225 pts · verified ✓</div>
+        </div>
+        <div onClick="{{ goHosting }}" style="font-size:12.5px; font-weight:600; color:#1E7A5A; cursor:pointer; flex:0 0 auto;">Calendar</div>
+      </div>
+      <div style="display:grid; gap:12px; padding:8px 0 18px;">
+        <div style="text-align:center;"><span style="font-size:11.5px; font-weight:700; color:#1E7A5A; background:#E7F3EC; border-radius:4px; padding:4px 10px;">Daniel booked Mar 8–9 · Feb 18</span></div>
+        <div style="max-width:80%; justify-self:start;">
+          <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px 8px 8px 3px; padding:11px 14px; font-size:14px; line-height:1.5;">Hi Maren — quick one before I pack: is there room to park a small trailer? It's a 12-footer.</div>
+          <div style="font-size:11px; color:#B0ACA2; margin-top:3px;">Daniel · today, 6:15 AM</div>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+        <div onClick="{{ noopDiv }}" style="border:1px solid #DDD9D0; border-radius:4px; padding:8px 14px; font-size:13px; font-weight:600; color:#3F3D35; cursor:pointer; background:#FFFFFF;" style-hover="border-color:#1E7A5A;">Yes, that works ✓</div>
+        <div onClick="{{ noopDiv }}" style="border:1px solid #DDD9D0; border-radius:4px; padding:8px 14px; font-size:13px; font-weight:600; color:#3F3D35; cursor:pointer; background:#FFFFFF;" style-hover="border-color:#1E7A5A;">Check-in is 3 PM</div>
+        <div onClick="{{ noopDiv }}" style="border:1px solid #DDD9D0; border-radius:4px; padding:8px 14px; font-size:13px; font-weight:600; color:#3F3D35; cursor:pointer; background:#FFFFFF;" style-hover="border-color:#1E7A5A;">Let me check</div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center; background:#FFFFFF; border:1px solid #DDD9D0; border-radius:8px; padding:8px;">
+        <div onClick="{{ noopDiv }}" style="width:38px; height:38px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:#8A867B; flex:0 0 auto;" title="Attach a photo">▣</div>
+        <input placeholder="Reply to Daniel…" style="flex:1; border:none; outline:none; font-size:14px; font-family:inherit; background:transparent; color:#26251F; min-width:0;">
+        <div style="background:#1E7A5A; color:#FFFFFF; font-size:13.5px; font-weight:700; border-radius:5px; padding:10px 18px; cursor:pointer; flex:0 0 auto;">Send</div>
+      </div>
+      <div style="font-size:11.5px; color:#B9B4AC; margin-top:8px; text-align:center;">Replies within a few hours keep your response badge — no pressure, just a pattern guests notice.</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ F2 THREAD — ARCHIVED ============ -->
+  <sc-if value="{{ s_thread_archived }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Thread archived" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0 12px;">
+        <div onClick="{{ goInbox }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="flex:1;">
+          <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:18px; letter-spacing:-0.4px; color:#5C594F;">Cypress Shores · Ana T. <span style="font-size:10px; font-weight:700; color:#8A867B; background:#EBE8E1; border-radius:3px; padding:2px 6px; vertical-align:2px;">ARCHIVED</span></div>
+          <div style="font-size:12.5px; color:#A19C91;">Her stay Jan 9–11 · checked out</div>
+        </div>
+      </div>
+      <div style="display:grid; gap:12px; padding:8px 0 18px; opacity:0.75;">
+        <div style="text-align:center;"><span style="font-size:11.5px; font-weight:700; color:#8A867B; background:#F1EFE9; border-radius:4px; padding:4px 10px;">Ana checked out · Jan 11</span></div>
+        <div style="max-width:80%; justify-self:start;">
+          <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px 8px 8px 3px; padding:11px 14px; font-size:14px; line-height:1.5;">Left the spare key in the lockbox and the heater on low like you asked. Thanks again — hope to be back next winter!</div>
+          <div style="font-size:11px; color:#B0ACA2; margin-top:3px;">Ana · Jan 11, 10:44 AM</div>
+        </div>
+        <div style="max-width:80%; justify-self:end; text-align:right;">
+          <div style="background:#1E7A5A; color:#FFFFFF; border-radius:8px 8px 3px 8px; padding:11px 14px; font-size:14px; line-height:1.5; text-align:left;">Perfect guest, any time. Enjoy the points!</div>
+          <div style="font-size:11px; color:#B0ACA2; margin-top:3px;">You · Jan 11, 12:01 PM</div>
+        </div>
+        <div style="text-align:center;"><span style="font-size:11.5px; font-weight:700; color:#8A867B; background:#F1EFE9; border-radius:4px; padding:4px 10px;">Thread archived · Jan 25</span></div>
+      </div>
+      <div style="background:#F1EFE9; border-radius:8px; padding:14px 18px; font-size:13.5px; color:#5C594F; line-height:1.55; text-align:center;">This conversation is read-only — threads archive 14 days after checkout. Book another stay together and a fresh one opens.</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ C5 SYNC INCIDENT ============ -->
+  <sc-if value="{{ s_sync_incident }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Sync incident" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0;">
+        <div onClick="{{ goSyncHealth }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:22px; letter-spacing:-0.5px;">Airbnb disconnected</div>
+        <span style="font-size:10px; font-weight:700; color:#8B6E2E; background:#FBF4E6; border:1px solid #EAD9AE; border-radius:3px; padding:3px 8px; flex:0 0 auto;">NEW BOOKINGS PAUSED</span>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E0B4A6; border-radius:8px; padding:18px; margin-bottom:14px;">
+        <div style="font-weight:700; font-size:15.5px; color:#A0402A; margin-bottom:6px;">Your Airbnb access was revoked — and you have a confirmed stay</div>
+        <div style="font-size:14px; color:#5C594F; line-height:1.6;">Access was revoked on Airbnb's side at 8:12 AM (usually a password change). Without a live connection we can't see new Airbnb bookings — so <strong style="color:#26251F;">Mar 12–15, your confirmed Lodgr stay, is exposed to a double-booking</strong> until you reconnect.</div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:14px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#1E7A5A; margin-bottom:12px;">What we've already done</div>
+        <div style="display:grid; gap:10px; font-size:14px; color:#3F3D35;">
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">✓</span><span>Paused all new releases and Lodgr bookings on this home</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">✓</span><span>Mar 12–15 stays blocked on Vrbo — that connection is healthy</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">✓</span><span>Reassured your guest — their stay and points are protected</span></div>
+        </div>
+      </div>
+      <div onClick="{{ goConnectHub }}" style="background:#1E7A5A; color:#FFFFFF; font-weight:700; font-size:16px; text-align:center; padding:16px 0; border-radius:5px; cursor:pointer; margin-bottom:20px;">Reconnect Airbnb — 1 minute</div>
+      <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:#8A867B; margin:0 0 10px;">What your guest sees</div>
+      <div style="background:#E7F3EC; border:1px solid #9CC7AF; border-radius:8px; padding:14px 16px;">
+        <div style="font-size:13.5px; color:#26251F; line-height:1.6;"><strong style="color:#1E7A5A;">Your stay is protected.</strong> A calendar-sync issue on the host's side is being fixed. Your dates are locked, your points are safe, and we'll confirm here when it's resolved — nothing for you to do.</div>
+      </div>
+      <div style="font-size:12.5px; color:#A19C91; line-height:1.55; margin-top:10px;">This note sits on their trip page until sync is healthy again. If a collision does land, the collision playbook takes over — <a href="#" onClick="{{ goCollisionLink }}">see that state</a>.</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ C6 DAMAGE REPORT ============ -->
+  <sc-if value="{{ s_dmg_report }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Report damage" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0;">
+        <div onClick="{{ goActivity }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:22px; letter-spacing:-0.5px;">Report damage</div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:16px 18px; margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <div style="font-weight:700; font-size:15px;">Sam W. · Feb 27 – Mar 1</div>
+          <div style="font-size:12px; font-weight:700; color:#8B6E2E; background:#FBF4E6; border-radius:3px; padding:3px 8px;">WINDOW CLOSES MAR 3, 6 PM</div>
+        </div>
+        <div style="font-size:13px; color:#8A867B; margin-top:3px;">Reports must be filed within 48 hours of checkout, while evidence is fresh.</div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:14px;">
+        <div style="font-size:13px; font-weight:700; color:#26251F; margin-bottom:8px;">What happened?</div>
+        <textarea placeholder="Be specific — what's damaged, where, and when you found it." style="width:100%; box-sizing:border-box; border:1px solid #DDD9D0; border-radius:5px; padding:12px 14px; font-size:14px; font-family:inherit; color:#26251F; min-height:88px; resize:vertical; outline:none; background:#FAF9F6;"></textarea>
+        <div style="font-size:13px; font-weight:700; color:#26251F; margin:16px 0 8px;">Photo evidence</div>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px;">
+          <div style="aspect-ratio:1; border-radius:5px; background:repeating-linear-gradient(135deg,#F1EFE9,#F1EFE9 6px,#FAF9F6 6px,#FAF9F6 12px); border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center;"><span style="font-family:ui-monospace, monospace; font-size:10px; color:#8A867B;">photo 1</span></div>
+          <div style="aspect-ratio:1; border-radius:5px; background:repeating-linear-gradient(135deg,#F1EFE9,#F1EFE9 6px,#FAF9F6 6px,#FAF9F6 12px); border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center;"><span style="font-family:ui-monospace, monospace; font-size:10px; color:#8A867B;">photo 2</span></div>
+          <div onClick="{{ noopDiv }}" style="aspect-ratio:1; border-radius:5px; border:2px dashed #C9C4B9; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#8A867B; font-size:22px;">＋</div>
+        </div>
+        <div style="font-size:13px; font-weight:700; color:#26251F; margin:16px 0 8px;">Estimated cost to repair or replace</div>
+        <input value="$180" style="width:140px; box-sizing:border-box; border:1px solid #DDD9D0; border-radius:5px; padding:12px 14px; font-size:15px; font-family:inherit; color:#26251F; outline:none; background:#FAF9F6;">
+      </div>
+      <div style="background:#F1EFE9; border-radius:5px; padding:13px 16px; font-size:13px; color:#5C594F; line-height:1.55; margin-bottom:18px;">Normal wear — scuffs, a burnt-out bulb, cleaning-level mess — is what the cleaning fee covers. Damage means something needs repair or replacement.</div>
+      <div onClick="{{ goDmgSubmitted }}" style="background:#26251F; color:#FFFFFF; font-weight:700; font-size:16px; text-align:center; padding:16px 0; border-radius:5px; cursor:pointer;">Submit report</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ C6 DAMAGE SUBMITTED ============ -->
+  <sc-if value="{{ s_dmg_submitted }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Damage submitted" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="padding-top:76px; text-align:center;">
+        <div style="width:64px; height:64px; border-radius:999px; background:#FBF4E6; color:#8B6E2E; font-size:24px; display:flex; align-items:center; justify-content:center; margin:0 auto 22px;">⏳</div>
+        <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.8px; margin:0 0 10px;">Report submitted</h1>
+        <p style="font-size:15px; color:#5C594F; line-height:1.6; margin:0 auto 26px; max-width:380px;">A person reviews every damage report — no automated rulings. Case #D-2214.</p>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:14px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#1E7A5A; margin-bottom:12px;">What happens now</div>
+        <div style="display:grid; gap:10px; font-size:14px; color:#3F3D35;">
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">1.</span><span>Sam is notified today with your description and photos</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">2.</span><span>He has 72 hours to respond with his side</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">3.</span><span>Our team rules within 2 business days of his response</span></div>
+        </div>
+      </div>
+      <div style="font-size:13px; color:#8A867B; line-height:1.55; margin-bottom:20px; text-align:center;">Your points and calendar are untouched while this is open.</div>
+      <div style="display:flex; gap:10px; justify-content:center;">
+        <div onClick="{{ goDmgOutcome }}" style="font-size:12px; color:#B0ACA2; border:1px dashed #DDD9D0; border-radius:5px; padding:8px 14px; cursor:pointer;">Demo: the two outcomes →</div>
+        <div onClick="{{ goDmgGuest }}" style="font-size:12px; color:#B0ACA2; border:1px dashed #DDD9D0; border-radius:5px; padding:8px 14px; cursor:pointer;">Demo: what Sam sees →</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ C6 DAMAGE OUTCOMES ============ -->
+  <sc-if value="{{ s_dmg_outcome }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Damage outcomes" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0;">
+        <div onClick="{{ goDmgSubmitted }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:22px; letter-spacing:-0.5px;">How case #D-2214 can resolve</div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #9CC7AF; border-radius:8px; padding:18px; margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
+          <div style="font-weight:700; font-size:15.5px; color:#1E7A5A;">Upheld — you're made whole</div>
+          <span style="font-size:10px; font-weight:700; color:#1E7A5A; border:1px solid #9CC7AF; border-radius:3px; padding:2px 6px;">OUTCOME A</span>
+        </div>
+        <div style="display:grid; gap:8px; font-size:14px;">
+          <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#5C594F;">Repair cost ($180)</span><strong>Charged to Sam's card on file</strong></div>
+          <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#5C594F;">If his card fails</span><strong>Converted to a points debit on his wallet</strong></div>
+          <div style="display:flex; justify-content:space-between; gap:12px;"><span style="color:#5C594F;">His account</span><strong style="color:#8B6E2E;">Standing note · repeat cases → review</strong></div>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
+          <div style="font-weight:700; font-size:15.5px; color:#5C594F;">Not upheld — wear, or not enough evidence</div>
+          <span style="font-size:10px; font-weight:700; color:#8A867B; border:1px solid #DDD9D0; border-radius:3px; padding:2px 6px;">OUTCOME B</span>
+        </div>
+        <div style="font-size:14px; color:#5C594F; line-height:1.6;">No transfer happens and the case closes with a written reason. Neither side takes a mark. If new evidence turns up, you can reopen once within 14 days.</div>
+      </div>
+      <div style="font-size:12.5px; color:#A19C91; line-height:1.55;">Either way, the ruling lands in your inbox thread and email with the reviewer's name on it — a person you can reply to.</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ C6 DAMAGE — GUEST NOTICE ============ -->
+  <sc-if value="{{ s_dmg_guest }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Damage notice guest" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:560px; margin:0 auto; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 0;">
+        <div onClick="{{ goDmgSubmitted }}" style="width:36px; height:36px; border-radius:5px; border:1px solid #DDD9D0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;">‹</div>
+        <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:22px; letter-spacing:-0.5px;">A damage report was filed</div>
+      </div>
+      <div style="background:#FBF4E6; border:1px solid #EAD9AE; border-radius:8px; padding:16px 18px; margin-bottom:14px;">
+        <div style="font-size:14px; color:#8B6E2E; line-height:1.6;"><strong>Maren reported damage from your Feb 27 – Mar 1 stay</strong> at the Fernwood A-Frame: a cracked glass stovetop, estimated at $180. Two photos are attached. Nothing has been charged — this is your chance to respond first.</div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
+          <div style="font-size:13px; font-weight:700; color:#26251F;">Your response</div>
+          <div style="font-size:12px; font-weight:700; color:#8B6E2E;">72 hours to reply · by Mar 6, 11 AM</div>
+        </div>
+        <textarea placeholder="Your side of it — what you saw, when, anything the photos don't show." style="width:100%; box-sizing:border-box; border:1px solid #DDD9D0; border-radius:5px; padding:12px 14px; font-size:14px; font-family:inherit; color:#26251F; min-height:88px; resize:vertical; outline:none; background:#FAF9F6;"></textarea>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <div onClick="{{ noopDiv }}" style="border:1px dashed #C9C4B9; border-radius:5px; padding:9px 14px; font-size:13px; color:#8A867B; cursor:pointer;">＋ Add photos</div>
+        </div>
+      </div>
+      <div style="background:#F1EFE9; border-radius:5px; padding:13px 16px; font-size:13px; color:#5C594F; line-height:1.55; margin-bottom:18px;">A person reviews both sides before anything moves. If you don't respond in 72 hours, the review proceeds on the host's evidence alone.</div>
+      <div onClick="{{ noopDiv }}" style="background:#26251F; color:#FFFFFF; font-weight:700; font-size:16px; text-align:center; padding:16px 0; border-radius:5px; cursor:pointer;">Send response</div>
+    </div>
+  </sc-if>
+
+  <!-- ============ D7 HOLD EXPIRED ============ -->
+  <sc-if value="{{ s_hold_expired }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Hold expired" style="animation:lodgrFadeUp .35s ease; padding:0 22px 120px; max-width:560px; margin:0 auto; box-sizing:border-box; text-align:center;">
+      <div style="padding-top:96px;">
+        <div style="width:64px; height:64px; border-radius:999px; background:#F1EFE9; color:#8A867B; font-size:24px; display:flex; align-items:center; justify-content:center; margin:0 auto 22px;">⏱</div>
+        <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.8px; margin:0 0 10px;">Your hold expired</h1>
+        <p style="font-size:15px; color:#5C594F; line-height:1.6; margin:0 auto 20px; max-width:360px;">We held Mar 12–15 for 10 minutes while you checked out, then released the nights back so other members could book them. Nothing was charged and your points never left your wallet.</p>
+        <div style="background:#E7F3EC; border:1px solid #9CC7AF; border-radius:8px; padding:13px 18px; display:inline-block; margin-bottom:26px;">
+          <div style="font-size:14px; color:#26251F;">Good news — <strong style="color:#1E7A5A;">the dates are still open</strong> right now.</div>
+        </div>
+        <div style="display:flex; gap:10px; justify-content:center;">
+          <div onClick="{{ goCheckout }}" style="background:#1E7A5A; color:#FFFFFF; font-weight:700; font-size:15px; padding:14px 26px; border-radius:5px; cursor:pointer;">Hold them again</div>
+          <div onClick="{{ goListing }}" style="border:1px solid #DDD9D0; color:#26251F; font-weight:700; font-size:15px; padding:14px 26px; border-radius:5px; cursor:pointer;">Back to the listing</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ E3 WALLET FROZEN ============ -->
+  <sc-if value="{{ s_wallet_frozen }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Wallet frozen" style="animation:lodgrFadeUp .35s ease; padding:0 22px 150px; max-width:640px; margin:0 auto; box-sizing:border-box;">
+      <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.7px; padding-top:20px; margin:0 0 18px;">Wallet</h1>
+      <div style="background:#26251F; color:#FFFFFF; border-radius:8px; padding:22px; margin-bottom:14px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; opacity:0.7; margin-bottom:6px;">Balance</div>
+        <div style="display:flex; align-items:baseline; gap:12px;">
+          <div style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:40px; letter-spacing:-1px; color:#E8A87C;">−225 pts</div>
+          <span style="font-size:11px; font-weight:700; color:#26251F; background:#E8A87C; border-radius:3px; padding:3px 8px;">BOOKING PAUSED</span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:14px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#8B6E2E; margin-bottom:10px;">What happened</div>
+        <div style="font-size:14px; color:#5C594F; line-height:1.6;">You cancelled Daniel's confirmed stay on Mar 3. His 225 pts had already unlocked from a prior check-in and been spent — so the clawback took your balance below zero. That's the only way a wallet goes negative.</div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:18px; margin-bottom:14px;">
+        <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#1E7A5A; margin-bottom:12px;">How it resolves — automatically</div>
+        <div style="display:grid; gap:10px; font-size:14px; color:#3F3D35;">
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">1.</span><span>Keep hosting as normal — releasing and earning still work</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">2.</span><span>New earnings repay the negative balance first, then accrue</span></div>
+          <div style="display:flex; gap:10px; align-items:baseline;"><span style="color:#1E7A5A; font-weight:700;">3.</span><span>The moment you're at zero, booking re-opens on its own</span></div>
+        </div>
+        <div style="height:4px; background:#EBE8E1; border-radius:99px; margin-top:14px;"><div style="width:0%; height:100%; background:#1E7A5A; border-radius:99px;"></div></div>
+        <div style="font-size:12.5px; color:#8A867B; margin-top:6px;">225 pts to go — one released night at your tier covers it twice over.</div>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <div onClick="{{ goLedger }}" style="flex:1; text-align:center; border:1px solid #DDD9D0; border-radius:5px; padding:13px 0; font-size:14px; font-weight:600; cursor:pointer;">See the ledger entry</div>
+        <div onClick="{{ goHosting }}" style="flex:1; text-align:center; background:#1E7A5A; color:#FFFFFF; border-radius:5px; padding:13px 0; font-size:14px; font-weight:700; cursor:pointer;">Release nights</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ F5 DEGRADED MODE ============ -->
+  <sc-if value="{{ s_degraded }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Degraded mode" style="animation:lodgrFadeUp .35s ease; padding-bottom:150px;">
+      <div style="background:#26251F; color:#FFFFFF; padding:12px 22px; display:flex; align-items:center; gap:10px; justify-content:center; text-align:center;">
+        <span style="width:8px; height:8px; border-radius:999px; background:#E8A87C; flex:0 0 auto;"></span>
+        <span style="font-size:13px; font-weight:600; line-height:1.4;">Points bookings are paused — a sync-provider outage. Existing stays are unaffected.</span>
+      </div>
+      <div style="max-width:640px; margin:0 auto; padding:22px 22px 0; box-sizing:border-box;">
+        <h1 style="font-family:'Schibsted Grotesk'; font-weight:800; font-size:28px; letter-spacing:-0.7px; margin:0 0 6px;">Explore</h1>
+        <p style="font-size:13.5px; color:#8A867B; margin:0 0 18px;">Browsing works. Booking re-opens the moment calendars can be locked safely again — we'd rather pause than risk a double-booking.</p>
+        <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; overflow:hidden; margin-bottom:14px;">
+          <img src="data:image/jpeg;base64,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" alt="Sea Ranch Hideout" style="width:100%; height:150px; object-fit:cover; display:block; filter:saturate(0.82) contrast(0.98) sepia(0.06); opacity:0.9;">
+          <div style="padding:16px 18px;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+              <div style="font-weight:700; font-size:15.5px;">Sea Ranch Hideout</div>
+              <div style="font-weight:700; font-size:14px; color:#8A867B;">780 pts / night</div>
+            </div>
+            <div style="font-size:13px; color:#8A867B; margin-top:3px;">The Sea Ranch, CA · ◆ Platinum</div>
+            <div style="margin-top:12px; background:#F1EFE9; color:#8A867B; font-weight:700; font-size:14px; text-align:center; padding:13px 0; border-radius:5px; cursor:default;">Booking paused — back shortly</div>
+          </div>
+        </div>
+        <div style="background:#FFFFFF; border:1px solid #E5E1DA; border-radius:8px; padding:16px 18px;">
+          <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:#1E7A5A; margin-bottom:10px;">While we're paused</div>
+          <div style="display:grid; gap:9px; font-size:13.5px; color:#5C594F; line-height:1.5;">
+            <div style="display:flex; gap:10px;"><span style="color:#1E7A5A;">✓</span><span>Confirmed stays, check-ins, and your points are all unaffected</span></div>
+            <div style="display:flex; gap:10px;"><span style="color:#1E7A5A;">✓</span><span>Hosts' calendars keep syncing where connections are healthy</span></div>
+            <div style="display:flex; gap:10px;"><span style="color:#1E7A5A;">✓</span><span>Checkout mid-pause? Your hold resumes exactly where it stopped</span></div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:#A19C91; margin-top:12px;">Same banner appears on checkout with the pay button disabled. Status page linked from every instance.</div>
       </div>
     </div>
   </sc-if>
@@ -3989,6 +4521,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             <div style="font-size:13px; color:#8A867B;">maren@fernwood.co · member since Jan 2027</div>
           </div>
           <div style="font-size:13px; font-weight:600; color:#1E7A5A; cursor:pointer;">Edit</div>
+        </div>
+        <div style="padding:14px 16px; border-bottom:1px solid #EBE8E1; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:14.5px; font-weight:600;">Identity <span style="font-size:11px; font-weight:700; color:#1E7A5A; border:1px solid #9CC7AF; border-radius:3px; padding:2px 6px; background:#F3FAF6;">VERIFIED ✓</span></div>
+            <div style="font-size:13px; color:#8A867B;">Government ID matched · Jan 4, 2027</div>
+          </div>
+          <div onClick="{{ goIdvIntro }}" style="font-size:13px; font-weight:600; color:#1E7A5A; cursor:pointer;">Details</div>
         </div>
         <div style="padding:14px 16px; border-bottom:1px solid #EBE8E1; display:flex; justify-content:space-between; align-items:center;">
           <div>
@@ -4012,6 +4551,13 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
             <div style="font-size:13px; color:#8A867B;">Airbnb ✓ · Vrbo ✓ · auto-release 14 days</div>
           </div>
           <div onClick="{{ goSyncHealth }}" style="font-size:13px; font-weight:600; color:#1E7A5A; cursor:pointer;">Manage</div>
+        </div>
+        <div style="padding:14px 16px; border-bottom:1px solid #EBE8E1; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:14.5px; font-weight:600;">Cleaning fee</div>
+            <div style="font-size:13px; color:#8A867B;">$85 per points stay · paid in cash at checkout · cap $150</div>
+          </div>
+          <div style="font-size:13px; font-weight:600; color:#1E7A5A; cursor:pointer;">Edit</div>
         </div>
         <div style="padding:14px 16px; border-bottom:1px solid #EBE8E1; display:flex; justify-content:space-between; align-items:center;">
           <div style="font-size:14.5px; font-weight:600;">Notification preferences</div>
@@ -4135,7 +4681,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       <div onClick="{{ goTrips }}" style="flex:1; text-align:center; cursor:pointer;"><div style="font-size:18px; color:{{ tabTripsColor }};">✈</div><div style="font-size:10.5px; font-weight:600; color:{{ tabTripsColor }};">Trips</div></div>
       <div onClick="{{ goHosting }}" style="flex:1; text-align:center; cursor:pointer;"><div style="font-size:18px; color:{{ tabHostingColor }};">⌂</div><div style="font-size:10.5px; font-weight:600; color:{{ tabHostingColor }};">Hosting</div></div>
       <div onClick="{{ goWallet }}" style="flex:1; text-align:center; cursor:pointer;"><div style="font-size:18px; color:{{ tabWalletColor }};">◆</div><div style="font-size:10.5px; font-weight:600; color:{{ tabWalletColor }};">Wallet</div></div>
-      <div onClick="{{ goInbox }}" style="flex:1; text-align:center; cursor:pointer; position:relative;"><div style="font-size:18px; color:{{ tabInboxColor }};">✉</div><div style="font-size:10.5px; font-weight:600; color:{{ tabInboxColor }};">Inbox</div><div style="position:absolute; top:-3px; left:50%; margin-left:6px; font-size:7.5px; font-weight:700; letter-spacing:0.4px; background:#EBE8E1; color:#8A867B; border-radius:3px; padding:1px 4px;">SOON</div></div>
+      <div onClick="{{ goInbox }}" style="flex:1; text-align:center; cursor:pointer; position:relative;"><div style="font-size:18px; color:{{ tabInboxColor }};">✉</div><div style="font-size:10.5px; font-weight:600; color:{{ tabInboxColor }};">Inbox</div><div style="position:absolute; top:-4px; left:50%; margin-left:8px; min-width:16px; height:16px; box-sizing:border-box; font-size:10px; font-weight:700; background:#1E7A5A; color:#FFFFFF; border-radius:999px; padding:1px 4px; line-height:14px;">2</div></div>
     </div>
   </sc-if>
 
@@ -4185,7 +4731,9 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 }">
 const FLOWS = [
   ['Onboarding', [
-    ['landing','Landing'], ['login','Log in (A1)'], ['login_sent','Magic link sent (A1)'], ['fork','Onboarding fork']
+    ['landing','Landing'], ['login','Log in (A1)'], ['login_sent','Magic link sent (A1)'],
+    ['idv_intro','Verify identity (A1)'], ['idv_capture','ID + selfie (A1)'], ['idv_pending','Verifying (A1)'],
+    ['idv_verified','Verified (A1)'], ['idv_failed','Verification failed (A1)'], ['fork','Onboarding fork']
   ]],
   ['Connect', [
     ['pms_gate','PMS gate (B1)'], ['channels','Where is it listed (B2)'], ['connect_hub','Connect hub (B2)'],
@@ -4203,21 +4751,32 @@ const FLOWS = [
     ['hosting','Dashboard + release (C1)'], ['autorelease','Auto-release rules (C2)'],
     ['sync_health','Sync health (C3)'], ['sync_reauth','Re-auth needed (C3)'],
     ['activity','Activity feed (C4)'], ['collision','Collision alert (C4)'],
-    ['host_cancel','Cancellation received (D4)']
+    ['sync_incident','Sync incident (C5)'],
+    ['dmg_report','Report damage (C6)'], ['dmg_submitted','Damage submitted (C6)'],
+    ['dmg_outcome','Damage outcomes (C6)'], ['dmg_guest','Damage notice — guest (C6)'],
+    ['host_cancel','Cancellation received (D4)'],
+    ['hcx_reason','Cancel a stay (D4b)'], ['hcx_preview','Consequences (D4b)'], ['hcx_done','Stay cancelled (D4b)']
   ]],
   ['Booking', [
     ['explore','Explore'], ['explore_empty','Zero results (D6)'], ['listing','Listing detail'],
     ['checkout','Checkout'], ['checkout_insufficient','Not enough points (D1)'],
     ['confirming','Confirming'], ['booking_failed','Booking failed (D2)'], ['confirmed','Confirmed'],
     ['trips','Trips (D5)'], ['trip_detail','Stay detail (D5)'],
-    ['cancel_preview','Cancel stay (D3)'], ['cancel_done','Cancelled (D3)']
+    ['cancel_preview','Cancel stay (D3)'], ['cancel_done','Cancelled (D3)'],
+    ['hold_expired','Hold expired (D7)']
+  ]],
+  ['Inbox', [
+    ['inbox','Inbox (F2)'], ['inbox_empty','Empty state (F2)'],
+    ['thread_guest','Thread — guest view (F2)'], ['thread_host','Thread — host view (F2)'],
+    ['thread_archived','Archived thread (F2)']
   ]],
   ['Wallet', [
-    ['wallet','Wallet'], ['ledger','Transactions (E1)'], ['unlock_detail','Unlock schedule (E2)']
+    ['wallet','Wallet'], ['ledger','Transactions (E1)'], ['unlock_detail','Unlock schedule (E2)'],
+    ['wallet_frozen','Wallet frozen (E3)']
   ]],
   ['System', [
-    ['inbox_soon','Inbox — soon (F2)'], ['settings','Settings (F3)'],
-    ['notifications','Notifications (F1)'], ['error_state','Connection lost (F4)']
+    ['settings','Settings (F3)'], ['notifications','Notifications (F1)'],
+    ['error_state','Connection lost (F4)'], ['degraded','Degraded mode (F5)']
   ]]
 ];
 const SCREENS = [];
@@ -4225,9 +4784,11 @@ const LABELS = {};
 FLOWS.forEach(f => f[1].forEach(s => { SCREENS.push(s[0]); LABELS[s[0]] = s[1]; }));
 
 const APP_SET = {explore:1, explore_empty:1, listing:1, checkout:1, checkout_insufficient:1,
-  confirmed:1, wallet:1, ledger:1, unlock_detail:1, hosting:1, autorelease:1, sync_health:1,
-  sync_reauth:1, activity:1, collision:1, host_cancel:1, trips:1, trip_detail:1, cancel_preview:1,
-  cancel_done:1, inbox_soon:1, settings:1, notifications:1};
+  confirmed:1, wallet:1, ledger:1, unlock_detail:1, wallet_frozen:1, hosting:1, autorelease:1, sync_health:1,
+  sync_reauth:1, sync_incident:1, dmg_report:1, dmg_submitted:1, dmg_outcome:1, dmg_guest:1,
+  activity:1, collision:1, host_cancel:1, hcx_reason:1, hcx_preview:1, hcx_done:1, trips:1, trip_detail:1, cancel_preview:1,
+  cancel_done:1, hold_expired:1, inbox:1, inbox_empty:1, thread_guest:1, thread_host:1, thread_archived:1,
+  settings:1, notifications:1, degraded:1};
 
 const POST_BOOKING = {confirmed:1, wallet:1, ledger:1, unlock_detail:1, trips:1, trip_detail:1, cancel_preview:1, cancel_done:1};
 
@@ -4240,7 +4801,7 @@ class Component extends DCLogic {
     toast: '', tierOpen: false, pmsOpen: false,
     chSel: { airbnb: true, vrbo: true, bcom: false },
     chConn: {},
-    mapSel: {0: true}, cancelLate: false, checkinOpen: false
+    mapSel: {0: true}, cancelLate: false, checkinOpen: false, hcxReason: ''
   };
 
   go(name) {
@@ -4252,6 +4813,9 @@ class Component extends DCLogic {
     }
     if (name === 'confirming_fail') {
       this._t = setTimeout(() => { if (this.state.screen === 'confirming_fail') this.go('booking_failed'); }, 2600);
+    }
+    if (name === 'idv_pending') {
+      this._t = setTimeout(() => { if (this.state.screen === 'idv_pending') this.go('idv_verified'); }, 2600);
     }
     if (name === 'oauth_success') {
       const c = Object.assign({}, this.state.chConn); c.airbnb = 'connected';
@@ -4400,6 +4964,23 @@ class Component extends DCLogic {
     const relPts = relCount * 450;
     const relWarnDays = selDays.filter(n => n <= 7);
 
+    // host-initiated cancel reasons
+    const HCX_REASONS = ['Emergency at the home', 'I need those dates myself', 'Maintenance — the home is unusable', 'Something else'];
+    vals.hcxReasons = HCX_REASONS.map(r => {
+      const sel = st.hcxReason === r;
+      return {
+        label: r,
+        bd: sel ? '#26251F' : '#DDD9D0',
+        bg: sel ? '#F1EFE9' : '#FFFFFF',
+        dotBd: sel ? '#26251F' : '#C9C4B9',
+        dotBg: sel ? '#26251F' : '#FFFFFF',
+        tap: () => this.setState({ hcxReason: r })
+      };
+    });
+    vals.hcxCtaBg = st.hcxReason ? '#26251F' : '#B0ACA2';
+    vals.hcxContinue = () => { if (this.state.hcxReason) this.go('hcx_preview'); };
+    vals.hcxReasonLabel = st.hcxReason || '—';
+
     // nav
     const navGroups = FLOWS.map(f => {
       const open = st.navGroup === f[0];
@@ -4461,6 +5042,10 @@ class Component extends DCLogic {
       goHosting: go('hosting'), goAutorelease: go('autorelease'), goSyncHealth: go('sync_health'),
       goSyncReauth: go('sync_reauth'), goActivity: go('activity'), goCollision: go('collision'),
       goHostCancel: go('host_cancel'),
+      goIdvIntro: go('idv_intro'), goIdvCapture: go('idv_capture'), goIdvPending: go('idv_pending'),
+      goIdvVerified: go('idv_verified'), goIdvFailed: go('idv_failed'), goIdvFailedLink: go('idv_failed'),
+      goHcxReason: go('hcx_reason'), goHcxPreview: go('hcx_preview'), goHcxDone: go('hcx_done'),
+      noopDiv: () => {},
       goExplore: go('explore'), goExploreEmpty: go('explore_empty'), goListing: go('listing'),
       goCheckout: go('checkout'), goCheckoutInsufficient: go('checkout_insufficient'),
       goConfirming: go('confirming'), goConfirmingFail: go('confirming_fail'),
@@ -4468,7 +5053,15 @@ class Component extends DCLogic {
       goTrips: go('trips'), goTripDetail: go('trip_detail'),
       goCancelPreview: go('cancel_preview'), goCancelDone: go('cancel_done'),
       goWallet: go('wallet'), goLedger: go('ledger'), goUnlockDetail: go('unlock_detail'),
-      goInbox: go('inbox_soon'), goSettings: go('settings'),
+      goInbox: go('inbox'), goInboxEmpty: go('inbox_empty'),
+      goThreadGuest: go('thread_guest'), goThreadHost: go('thread_host'), goThreadArchived: go('thread_archived'),
+      goSyncIncident: go('sync_incident'), goSyncIncidentLink: goL('sync_incident'),
+      goDmgReport: go('dmg_report'), goDmgSubmitted: go('dmg_submitted'),
+      goDmgOutcome: go('dmg_outcome'), goDmgGuest: go('dmg_guest'),
+      goHoldExpired: go('hold_expired'), goHoldExpiredLink: goL('hold_expired'),
+      goWalletFrozen: go('wallet_frozen'),
+      goDegraded: go('degraded'), goDegradedLink: goL('degraded'),
+      goSettings: go('settings'),
       goNotifications: go('notifications'), goErrorState: go('error_state'),
 
       goPmsGateLink: goL('pms_gate'), goWaitlistLink: goL('waitlist'),
@@ -4493,11 +5086,11 @@ class Component extends DCLogic {
       navGroups,
       showDemoNav: (this.props.showDemoNav ?? true) && s !== 'confirming' && s !== 'confirming_fail',
 
-      tabExploreColor: (s === 'explore' || s === 'explore_empty' || s === 'listing') ? active : idle,
-      tabTripsColor: (s === 'trips' || s === 'trip_detail' || s === 'confirmed' || s === 'cancel_preview' || s === 'cancel_done') ? active : idle,
-      tabHostingColor: (s === 'hosting' || s === 'autorelease' || s === 'sync_health' || s === 'sync_reauth' || s === 'activity' || s === 'collision' || s === 'host_cancel') ? active : idle,
-      tabWalletColor: (s === 'wallet' || s === 'ledger' || s === 'unlock_detail') ? active : idle,
-      tabInboxColor: s === 'inbox_soon' ? active : idle,
+      tabExploreColor: (s === 'explore' || s === 'explore_empty' || s === 'listing' || s === 'degraded') ? active : idle,
+      tabTripsColor: (s === 'trips' || s === 'trip_detail' || s === 'confirmed' || s === 'cancel_preview' || s === 'cancel_done' || s === 'hold_expired') ? active : idle,
+      tabHostingColor: (s === 'hosting' || s === 'autorelease' || s === 'sync_health' || s === 'sync_reauth' || s === 'sync_incident' || s === 'dmg_report' || s === 'dmg_submitted' || s === 'dmg_outcome' || s === 'dmg_guest' || s === 'activity' || s === 'collision' || s === 'host_cancel' || s === 'hcx_reason' || s === 'hcx_preview' || s === 'hcx_done') ? active : idle,
+      tabWalletColor: (s === 'wallet' || s === 'ledger' || s === 'unlock_detail' || s === 'wallet_frozen') ? active : idle,
+      tabInboxColor: (s === 'inbox' || s === 'inbox_empty' || s === 'thread_guest' || s === 'thread_host' || s === 'thread_archived') ? active : idle,
 
       toast: st.toast, toastOn: !!st.toast,
 
